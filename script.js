@@ -65,3 +65,10 @@ function toggleTheme() {
         })
     }
 }
+
+function openDialog() {
+    document.getElementById('addLink').classList.remove('hidden')
+}
+function closeDialog() {
+    document.getElementById('addLink').classList.add('hidden')
+}

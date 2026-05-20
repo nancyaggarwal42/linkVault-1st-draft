@@ -27,7 +27,7 @@
             <i class="fa-solid fa-magnifying-glass text-lg"></i>
             <input type="text" id="searchInput" placeholder="Search links, tags..." class="ml-3 w-full outline-none">
         </div>
-            <button class="bg-indigo-800 hover:bg-indigo-700 px-6 py-3 rounded-xl text-white">Add Link</button>
+            <button class="bg-indigo-800 hover:bg-indigo-700 px-6 py-3 rounded-xl text-white" onclick="openDialog()">Add Link</button>
     </div>
     <!-- filter -->
     <div class="px-10 py-5">
@@ -172,6 +172,49 @@
                     </div>
                 </div>
             </div>
+     </div>
+
+
+    <!-- add link -->
+     <div id="addLink" class="fixed inset-0 bg-black/90 flex items-center justify-center hidden z-50">
+        <div class="h-[75vh] w-[35vw] text-white rounded-2xl border border-gray-100 p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h5 class="text-xl font-bold">Edit Link</h5>
+                <i class="fa-solid fa-x cursor-pointer" onclick="closeDialog()"></i>
+            </div>
+            <!-- url -->
+                <label class="font-semibold">URL *</label>
+                <div class="flex items-center justify-between gap-4">
+                    <input type="text" placeholder="https://www.example.com" class="border rounded-xl px-4 py-2 outline-none w-full text-black bg-white">
+                    <button class="bg-indigo-600 px-4 py-2 rounded-xl text-white"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+                </div>
+            <!-- name -->
+            <label class="font-semibold">NAME *</label>
+            <input type="text" placeholder="Add Name" class="border text-black bg-white rounded-xl px-4 py-2 w-full outline-none">
+            <!-- image -->
+             <label class="font-semibold">IMAGE URL</label>
+             <input type="text" placeholder="data.jpeg" class="border text-black bg-white rounded-xl px-4 py-2 w-full outline-none"> 
+             <!-- for filters -->
+              <label class="font-semibold">ASSIGN FILTERS</label>
+              <div class="flex gap-3 mt-2 mb-4 flex-wrap">
+                <button class="border px-4 py-1 rounded-full">Work</button>
+                <button class="border px-4 py-1 rounded-full">Work</button>
+                <button class="border px-4 py-1 rounded-full">Work</button>
+                <button class="border px-4 py-1 rounded-full">Work</button>
+                <button class="border px-4 py-1 rounded-full">Work</button>
+                <button class="border px-4 py-1 rounded-full">Work</button>
+              </div>
+              <!-- for groups -->
+               <label class="font-semibold mt-4">ASSIGN GROUPS</label>
+               <div class="flex gap-3 mt-2 mb-6">
+                <button class="border px-4 py-1 rounded-full">Favorites</button>
+               </div>
+               <!-- buttons -->
+                <div class="flex justify-end gap-4 items-center">
+                    <button onclick="closeDialog()" class="">Cancel</button>
+                    <button class="bg-black text-white px-6 py-2 rounded-xl font-semibold">Save Link</button>
+                </div>
+        </div>
      </div>
 
 </body>
