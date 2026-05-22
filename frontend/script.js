@@ -73,6 +73,7 @@ function closeDialog() {
     document.getElementById('addLink').classList.add('hidden')
 }
 
+// const API = 'http://localhost:3000/api'
 const API = 'https://linkvault-1st-draft-backend.onrender.com/api'
 
 const urlInput = document.getElementById('urlInput')
@@ -114,6 +115,7 @@ document.getElementById('saveBtn').addEventListener('click', async() => {
         url: urlInput.value.trim(),
         name: nameInput.value.trim(),
         image: imageInput.value.trim(),
+   
 
 
         // ... is used bcz querySelector nodelist bnata h joki array jaise dikhta h pr hota nhi h.. usko array bnane ke lie ... use kia kyuki hume map function ka use krna tha
@@ -137,7 +139,7 @@ document.getElementById('saveBtn').addEventListener('click', async() => {
 })
 
 async function loadLinks() {
-    const res = await fetch(`${API}/links`)
+    const res = await fetch(`${API}/links/get`)
 
     const links = await res.json()
 

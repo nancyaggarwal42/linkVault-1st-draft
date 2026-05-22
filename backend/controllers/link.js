@@ -7,10 +7,10 @@ export const shortUrl = async(req, res) => {
         const {url} = req.body
 
     // axios url pe jaake html abstract krega user agent dene ka reason is kuch sites boots ko block krdeti h
-    const {data} = await axios.get(url, {header: {'User-Agent' : 'Mozilla/5.0'}})
+    const {data} = await axios.get(url, {headers: {'User-Agent' : 'Mozilla/5.0'}})
 
     // cheerio html read krta h like browser
-    const $ = cheerio.contains.load(data)
+    const $ = cheerio.load(data)
 
     // title abstract krenge and nhi milta h to title tag se lenge otherwise blank
     const title = $('meta[property="og:title"]').attr('content') || $('title').text() || ''
@@ -29,9 +29,9 @@ export const shortUrl = async(req, res) => {
 export const saveLink = async(req, res) => {
     try{
         // basically link db me name url ..... save ho jaega
-        const link = link.create(req.body)
+        const newLink = await link.create(req.body)
 
-        res.status(201).json(link)
+        res.status(201).json(newLink)
     }
     catch(err){
         res.status(500).json({message: err})
@@ -50,7 +50,7 @@ export const getLinks = async(req, res) => {
 
 export const deleteLink = async(req, res) => {
     try{
-        await link.findByIdAndDelete(Req.params.id)
+        await link.findByIdAndDelete(req.params.id)
         res.status(201).json({message: 'Delete successfully!'})
     }
     catch(err){
