@@ -123,7 +123,7 @@ document.getElementById('saveBtn').addEventListener('click', async() => {
         groups: [...document.querySelectorAll('.group-btn.selected')].map(b => b.textContent.trim())
     }
 
-    if(!payload.url || payload.name)
+    if(!payload.url || !payload.name)
         return alert('Enter URL or Name')
 
     await fetch(`${API}/links`, {
