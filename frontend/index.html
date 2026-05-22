@@ -58,126 +58,14 @@
                 <button id="allBtn" class="tab-btn border-b-2 border-indigo-600 pb-2 font-medium">All</button>
                 <button id="allBtn" class="tab-btn font-medium">Favorites</button>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
-                <div class="clt bg-white rounded-2xl overflow-hidden shadow-sm hover-shadow-lg tranistion">
-                    <img class="w-full h-44 object-cover2" src="images/Frame 25.png" alt="">
-                    <div class="p5">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="font-semibold text-xl">Pdf24</h3>
-                                <p class="mt-1">Work</p>
-                            </div>
-
-                            <!-- link icon -->
-                             <a href="#" class="hover:text-indigo-600 text-lg">
-                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                             </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="clt bg-white rounded-2xl overflow-hidden shadow-sm hover-shadow-lg tranistion">
-                    <img class="w-full h-44 object-cover2" src="images/Frame 25-1.png" alt="">
-                    <div class="p5">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="font-semibold text-xl">Pdf24</h3>
-                                <p class="mt-1">Work</p>
-                            </div>
-
-                            <!-- link icon -->
-                             <a href="#" class="hover:text-indigo-600 text-lg">
-                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                             </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="clt bg-white rounded-2xl overflow-hidden shadow-sm hover-shadow-lg tranistion">
-                    <img class="w-full h-44 object-cover2" src="images/Frame 25-2.png" alt="">
-                    <div class="p5">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="font-semibold text-xl">Pdf24</h3>
-                                <p class="mt-1">Work</p>
-                            </div>
-
-                            <!-- link icon -->
-                             <a href="#" class="hover:text-indigo-600 text-lg">
-                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                             </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="clt bg-white rounded-2xl overflow-hidden shadow-sm hover-shadow-lg tranistion">
-                    <img class="w-full h-44 object-cover2" src="images/Frame 25-3.png" alt="">
-                    <div class="p5">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="font-semibold text-xl">Pdf24</h3>
-                                <p class="mt-1">Work</p>
-                            </div>
-
-                            <!-- link icon -->
-                             <a href="#" class="hover:text-indigo-600 text-lg">
-                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                             </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="clt bg-white rounded-2xl overflow-hidden shadow-sm hover-shadow-lg tranistion">
-                    <img class="w-full h-44 object-cover2" src="images/Frame 25-4.png" alt="">
-                    <div class="p5">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="font-semibold text-xl">Pdf24</h3>
-                                <p class="mt-1">Work</p>
-                            </div>
-
-                            <!-- link icon -->
-                             <a href="#" class="hover:text-indigo-600 text-lg">
-                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                             </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="clt bg-white rounded-2xl overflow-hidden shadow-sm hover-shadow-lg tranistion">
-                    <img class="w-full h-44 object-cover2" src="images/Frame 25-5.png" alt="">
-                    <div class="p5">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="font-semibold text-xl">Pdf24</h3>
-                                <p class="mt-1">Work</p>
-                            </div>
-
-                            <!-- link icon -->
-                             <a href="#" class="hover:text-indigo-600 text-lg">
-                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                             </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="clt bg-white rounded-2xl overflow-hidden shadow-sm hover-shadow-lg tranistion">
-                    <img class="w-full h-44 object-cover2" src="images/Frame 25-6.png" alt="">
-                    <div class="p5">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="font-semibold text-xl">Pdf24</h3>
-                                <p class="mt-1">Work</p>
-                            </div>
-
-                            <!-- link icon -->
-                             <a href="#" class="hover:text-indigo-600 text-lg">
-                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                             </a>
-                        </div>
-                    </div>
-                </div>
+            <div id="collectionsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
             </div>
      </div>
 
 
     <!-- add link -->
-     <div id="addLink" class="fixed inset-0 backdrop-blur-sm bg-black/95 flex items-center justify-center hidden z-50">
-        <div class="h-[75vh] w-[35vw] text-white rounded-2xl border border-gray-100 p-8">
+     <div id="addLink" class="fixed inset-0 backdrop-blur-sm bg-black/95 flex items-center justify-center hidden z-50 px-4">
+        <div class="max-h-[90vh] w-full max-w-lg overflow-y-auto text-white rounded-2xl border border-gray-100 p-8">
             <div class="flex justify-between items-center mb-6">
                 <h5 class="text-xl font-bold">Edit Link</h5>
                 <i class="fa-solid fa-x cursor-pointer" onclick="closeDialog()"></i>
@@ -185,34 +73,40 @@
             <!-- url -->
                 <label class="font-semibold">URL *</label>
                 <div class="flex items-center justify-between gap-4">
-                    <input type="text" placeholder="https://www.example.com" class="border rounded-xl px-4 py-2 outline-none w-full text-black bg-white">
-                    <button class="bg-indigo-600 px-4 py-2 rounded-xl text-white"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+                    <input id="urlInput" type="url" placeholder="https://www.example.com" class="border rounded-xl px-4 py-2 outline-none w-full text-black bg-white">
+                    <button id="scrapeBtn" class="bg-indigo-600 px-4 py-2 rounded-xl text-white"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
                 </div>
             <!-- name -->
             <label class="font-semibold">NAME *</label>
-            <input type="text" placeholder="Add Name" class="border text-black bg-white rounded-xl px-4 py-2 w-full outline-none">
+            <input id="nameInput" type="text" placeholder="Add Name" class="border text-black bg-white rounded-xl px-4 py-2 w-full outline-none">
             <!-- image -->
              <label class="font-semibold">IMAGE URL</label>
-             <input type="text" placeholder="data.jpeg" class="border text-black bg-white rounded-xl px-4 py-2 w-full outline-none"> 
+             <div class="flex items-center gap-4">
+             <input id="imageInput" type="text" placeholder="data.jpeg" class="border text-black bg-white rounded-xl px-4 py-2 w-full outline-none"> 
+             <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center flex-shrink-0">
+                <img id="imagePreview" src="" class="w-full h-full object-cover hidden">
+                <i id="imageIcon" class="fa-regular fa-image text-gray-400 text-2xl"></i>
+             </div>
+             </div>
              <!-- for filters -->
               <label class="font-semibold">ASSIGN FILTERS</label>
               <div class="flex gap-3 mt-2 mb-4 flex-wrap">
-                <button class="border px-4 py-1 rounded-full">Work</button>
-                <button class="border px-4 py-1 rounded-full">Work</button>
-                <button class="border px-4 py-1 rounded-full">Work</button>
-                <button class="border px-4 py-1 rounded-full">Work</button>
-                <button class="border px-4 py-1 rounded-full">Work</button>
-                <button class="border px-4 py-1 rounded-full">Work</button>
+                <button class="filter-btn border px-4 py-1 rounded-full">Work</button>
+                <button class="filter-btn border px-4 py-1 rounded-full">Work</button>
+                <button class="filter-btn border px-4 py-1 rounded-full">Work</button>
+                <button class="filter-btn border px-4 py-1 rounded-full">Work</button>
+                <button class="filter-btn border px-4 py-1 rounded-full">Work</button>
+                <button class="filter-btn border px-4 py-1 rounded-full">Work</button>
               </div>
               <!-- for groups -->
                <label class="font-semibold mt-4">ASSIGN GROUPS</label>
                <div class="flex gap-3 mt-2 mb-6">
-                <button class="border px-4 py-1 rounded-full">Favorites</button>
+                <button class="group-btn border px-4 py-1 rounded-full">Favorites</button>
                </div>
                <!-- buttons -->
                 <div class="flex justify-end gap-4 items-center">
                     <button onclick="closeDialog()" class="">Cancel</button>
-                    <button class="bg-black text-white px-6 py-2 rounded-xl font-semibold">Save Link</button>
+                    <button id="saveBtn" class="bg-black text-white px-6 py-2 rounded-xl font-semibold">Save Link</button>
                 </div>
         </div>
      </div>

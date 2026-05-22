@@ -72,3 +72,110 @@ function openDialog() {
 function closeDialog() {
     document.getElementById('addLink').classList.add('hidden')
 }
+
+const API = 'http://localhost:3000/api'
+
+const urlInput = document.getElementById('urlInput')
+const nameInput = document.getElementById('nameInput')
+const imageInput = document.getElementById('imageInput')
+
+// blue button code
+document.getElementById('scrapeBtn').addEventListener('click', async() => {
+    const url = urlInput.ariaValueMax.trim()
+
+    if(!url)
+        return alert('Please enter url')
+
+    // hum url ko send kr rhe h isliye method post use kia,
+    // headers yaani ke extra info to humne buss btaya ke content-type ye rhega,
+    // lastly backend sirf string ko smjhta h isliye json.stringify ka use krke hum jsno ko string me convert krenge.
+    // { url: "https://google.com" }     // JS Object
+    // ↓ JSON.stringify()
+    // '{"url":"https://google.com"}'    // JSON String
+    const res = await fetch(`${API}/links/shorten`, {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify({url})
+    })
+})
+
+// toggle for filters/groups
+document.querySelectorAll('.filter-btn', '.group-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        btn.classList.toggle('bg-indigo-800')
+        btn.classList.toggle('text-white')
+        btn.classList.toggle('selected')
+    })
+})
+
+// save button 
+socument.getElementById('saveBtn').addEventListener('click', async() => {
+    const payload = {
+        url: urlInput.value.trim(),
+        name: nameInput.value.trim(),
+        image: imageInput.value.trim(),
+
+
+        // ... is used bcz querySelector nodelist bnata h joki array jaise dikhta h pr hota nhi h.. usko array bnane ke lie ... use kia kyuki hume map function ka use krna tha
+        // map basically hr element pe kuch krne ke baad naya array bnata h
+        // b => b.textConte., iska mtlb b(har ek btn) uske andr ke text ko trim kro
+        filters: [...document.querySelectorAll('.filter-btn.selected')].map(b => b.textContent.trim()),
+        groups: [...document.querySelectorAll('.group-btn.selected')].map(b => b.textContent.trim())
+    }
+
+    if(!payload.url || payload.name)
+        return alert('Enter URL or Name')
+
+    await fetch(`${API}/links`, {
+        method: 'POST',
+        headers: {'content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+    })
+
+    closeDialog()
+    loadLinks()
+})
+
+async function loadLinks() {
+    const res = await fetch(`${API}/links`)
+
+    const links = await res.json()
+
+    const grid = document.getElementById('collectionsGrid')
+
+    grid.innerHTML = links.map(link => `
+        <div class="clt bg-white rounded-2xl overflow-hidden shadow-sm transition">
+        <img class="w-full h-44 object-cover" src='${link.image}'>
+        <div class="p-4">
+        <div class="flex justify-between items-center">
+        <div>
+        <h3 class="font-semibold text-xl">${link.name}</h3>
+        <p class="mt-1 text-sm text-gray-400">${link.filters.join(',') || 'No filter'}</p>
+        </div>
+        <a href="${link.url}" target="_blank" class="hover:text-indigo-600 text-lg">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+        </div>
+        </div>
+        </div>
+        `).join('')
+}
+
+loadLinks()
+
+
+// image add
+document.getElementById('imageInput').addEventListener('input', function() {
+    const preview = document.getElementById('imagePreview')
+    const icon = document.getElementById('imageIcon')
+
+    if(this.value){
+        preview.src = this.value
+        preview.classList.remove('hidden')
+        icon.classList.add('hidden')
+    }
+    else{
+        preview.classList.add('hidden')
+        icon.classList.remove('hidden')
+    }
+})
