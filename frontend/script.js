@@ -109,7 +109,7 @@ document.querySelectorAll('.filter-btn', '.group-btn').forEach(btn => {
 })
 
 // save button 
-socument.getElementById('saveBtn').addEventListener('click', async() => {
+document.getElementById('saveBtn').addEventListener('click', async() => {
     const payload = {
         url: urlInput.value.trim(),
         name: nameInput.value.trim(),
