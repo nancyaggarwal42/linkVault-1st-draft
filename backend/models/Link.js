@@ -8,4 +8,5 @@ const linkSchema = new mongoose.Schema({
     groups: {type: [String], default: []}
 }, {timestamps: true})
 
-export const link = mongoose.model('link', linkSchema)
+const link = mongoose.model('link', linkSchema)
+export default link

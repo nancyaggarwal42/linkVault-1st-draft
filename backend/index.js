@@ -6,8 +6,8 @@ import path from 'path'
 import {fileURLToPath} from 'url'
 import linkRoutes from './routes/links.js'
 
-const app = express()
 dotenv.config()
+const app = express()
 
 // import.meta.url  
 // current file ka full path hota hai

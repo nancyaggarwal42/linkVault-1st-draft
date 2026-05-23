@@ -73,8 +73,8 @@ function closeDialog() {
     document.getElementById('addLink').classList.add('hidden')
 }
 
-// const API = 'http://localhost:3000/api'
-const API = 'https://linkvault-1st-draft-backend.onrender.com/api'
+const API = 'http://localhost:3000/api'
+// const API = 'https://linkvault-1st-draft-backend.onrender.com/api'
 
 const urlInput = document.getElementById('urlInput')
 const nameInput = document.getElementById('nameInput')
@@ -82,7 +82,9 @@ const imageInput = document.getElementById('imageInput')
 
 // blue button code
 document.getElementById('scrapeBtn').addEventListener('click', async() => {
-    const url = urlInput.ariaValueMax.trim()
+    const imagePreview = document.getElementById('imagePreview')
+    const imageIcon = document.getElementById('imageIcon')
+    const url = urlInput.value.trim()
 
     if(!url)
         return alert('Please enter url')
@@ -98,6 +100,20 @@ document.getElementById('scrapeBtn').addEventListener('click', async() => {
         headers: {'content-type': 'application/json'},
         body: JSON.stringify({url})
     })
+
+    const data = await res.json()
+
+    if(data.title){
+        nameInput.value = data.title
+    }
+
+    if(data.image){
+        imageInput.value = data.image
+
+        imagePreview.src = data.image
+        imagePreview.classList.remove('hidden')
+        imageIcon.classList.add('hidden')
+    }
 })
 
 // toggle for filters/groups
@@ -140,8 +156,13 @@ document.getElementById('saveBtn').addEventListener('click', async() => {
 
 async function loadLinks() {
     const res = await fetch(`${API}/links/get`)
+    const data = await res.json()
+    const links = Array.isArray(data) ? data : (data.links || [])
 
-    const links = await res.json()
+    if (!Array.isArray(links)) {
+    console.error("Invalid API response:", data)
+    return
+    }
 
     const grid = document.getElementById('collectionsGrid')
 
@@ -152,7 +173,7 @@ async function loadLinks() {
         <div class="flex justify-between items-center">
         <div>
         <h3 class="font-semibold text-xl">${link.name}</h3>
-        <p class="mt-1 text-sm text-gray-400">${link.filters.join(',') || 'No filter'}</p>
+        <p class="mt-1 text-sm text-gray-400">${(link.filters || []).join(', ') || 'No Filter'}</p>
         </div>
         <a href="${link.url}" target="_blank" class="hover:text-indigo-600 text-lg">
         <i class="fa-solid fa-arrow-up-right-from-square"></i>

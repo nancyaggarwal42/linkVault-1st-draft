@@ -1,28 +1,48 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
-import { link } from '../models/Link.js'
+import link from '../models/Link.js'
 
-export const shortUrl = async(req, res) => {
-    try{
-        const {url} = req.body
+console.log("GET API HIT")
 
-    // axios url pe jaake html abstract krega user agent dene ka reason is kuch sites boots ko block krdeti h
-    const {data} = await axios.get(url, {headers: {'User-Agent' : 'Mozilla/5.0'}})
+export const shortUrl = async (req, res) => {
+    try {
+        const { url } = req.body
 
-    // cheerio html read krta h like browser
-    const $ = cheerio.load(data)
+        if (!url) {
+            return res.status(400).json({ message: "URL required" })
+        }
 
-    // title abstract krenge and nhi milta h to title tag se lenge otherwise blank
-    const title = $('meta[property="og:title"]').attr('content') || $('title').text() || ''
+        const { data } = await axios.get(url, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0',
+                'Accept-Language': 'en-US,en;q=0.9'
+            },
+            timeout: 10000
+        })
 
-    // og ka mtlb open graph joki facebook ne bnaya h jooki help krta h website ke title image or description etc ko abstract krne me
-    // favicons websites ke icons hote h google hume free me provide kr skta h favicons
-    const image = $('meta[property="og:image"]').attr('content') || `https://www.google.com/s2/favicons?sz=128&domain=${url}`
+        const $ = cheerio.load(data)
 
-    res.json({title: title.trim(), image})
-    }
-    catch(err){
-        res.status(500).json({error: err})
+        const title =
+            $('meta[property="og:title"]').attr('content') ||
+            $('title').text() ||
+            ''
+
+        const image =
+            $('meta[property="og:image"]').attr('content') ||
+            `https://www.google.com/s2/favicons?sz=128&domain=${url}`
+
+        return res.json({
+            title: title.trim(),
+            image
+        })
+
+    } catch (err) {
+        console.error("SCRAPE ERROR:", err.message)
+
+        return res.status(500).json({
+            message: "Scraping failed",
+            error: err.message
+        })
     }
 }
 
@@ -32,10 +52,15 @@ export const saveLink = async(req, res) => {
         const newLink = await link.create(req.body)
 
         res.status(201).json(newLink)
+    
     }
     catch(err){
-        res.status(500).json({message: err})
-    }
+    console.error(err)
+    res.status(500).json({
+        message: err.message,
+        error: err.toString()
+    })
+}
 }
 
 export const getLinks = async(req, res) => {
@@ -44,8 +69,12 @@ export const getLinks = async(req, res) => {
         res.json(links)
     }
     catch(err){
-        res.status(500).json({error: err})
-    }
+    console.error(err)
+    res.status(500).json({
+        message: err.message,
+        error: err.toString()
+    })
+}
 }
 
 export const deleteLink = async(req, res) => {
