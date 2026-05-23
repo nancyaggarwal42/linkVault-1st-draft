@@ -73,8 +73,8 @@ function closeDialog() {
     document.getElementById('addLink').classList.add('hidden')
 }
 
-const API = 'http://localhost:3000/api'
-// const API = 'https://linkvault-1st-draft-backend.onrender.com/api'
+// const API = 'http://localhost:3000/api'
+const API = 'https://linkvault-1st-draft-backend.onrender.com/api'
 
 const urlInput = document.getElementById('urlInput')
 const nameInput = document.getElementById('nameInput')
