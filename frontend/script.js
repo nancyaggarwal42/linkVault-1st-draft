@@ -3,7 +3,7 @@ const tabs = document.querySelectorAll('.tab-btn')
 tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
         // removing active styles
-        tab.forEach((btn) => {
+        tabs.forEach((btn) => {
             btn.classList.remove(
                 'border-indigo-600',
                 'text-gray-800',
@@ -97,7 +97,7 @@ document.getElementById('scrapeBtn').addEventListener('click', async() => {
     // '{"url":"https://google.com"}'    // JSON String
     const res = await fetch(`${API}/links/shorten`, {
         method: 'POST',
-        headers: {'content-type': 'application/json'},
+        headers: {'Content-type': 'application/json'},
         body: JSON.stringify({url})
     })
 
@@ -117,7 +117,7 @@ document.getElementById('scrapeBtn').addEventListener('click', async() => {
 })
 
 // toggle for filters/groups
-document.querySelectorAll('.filter-btn', '.group-btn').forEach(btn => {
+document.querySelectorAll('.filter-btn, .group-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         btn.classList.toggle('bg-indigo-800')
         btn.classList.toggle('text-white')
@@ -144,7 +144,7 @@ document.getElementById('saveBtn').addEventListener('click', async() => {
     if(!payload.url || !payload.name)
         return alert('Enter URL or Name')
 
-    await fetch(`${API}/links/`, {
+    await fetch(`${API}/links`, {
         method: 'POST',
         headers: {'content-Type': 'application/json'},
         body: JSON.stringify(payload)
@@ -202,3 +202,4 @@ document.getElementById('imageInput').addEventListener('input', function() {
         icon.classList.remove('hidden')
     }
 })
+
