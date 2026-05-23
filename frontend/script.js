@@ -144,7 +144,7 @@ document.getElementById('saveBtn').addEventListener('click', async() => {
     if(!payload.url || !payload.name)
         return alert('Enter URL or Name')
 
-    await fetch(`${API}/links`, {
+    await fetch(`${API}/links/`, {
         method: 'POST',
         headers: {'content-Type': 'application/json'},
         body: JSON.stringify(payload)
